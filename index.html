@@ -9,8 +9,7 @@
 <script>
 async function verificarConvite() {
   // 🔴 SIMULA de onde veio (apenas para teste)
-  const veioDe = "https://www.websiteplanet.com/pt-br/webtools/multiple-url/";
-
+  const veioDe = document.referrer;
   console.log("Veio de:", veioDe);
 
   const resposta = await fetch("lista.txt");
@@ -39,7 +38,7 @@ async function verificarConvite() {
     }
   }
 
-  alert("Nenhum convite encontrado 😢");
+  window.location.href = "https://" + siteDestino;
 }
 
 verificarConvite();
