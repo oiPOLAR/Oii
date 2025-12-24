@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste Referrer</title>
+</head>
+<body>
+
+<h1>Teste de convite</h1>
+<p>Abra o console (F12)</p>
+
+<script>
+async function verificarConvite() {
+  // 🔴 SIMULA de onde veio (apenas para teste)
+  const veioDe = "https://oi.com.site.polar/pagina";
+
+  console.log("Veio de:", veioDe);
+
+  const resposta = await fetch("lista.txt");
+  const texto = await resposta.text();
+
+  const blocos = texto.split("------------------------------------------------⌫");
+
+  for (const bloco of blocos) {
+    const origem = bloco.match(/⚿\s*(.+)/);
+    const destino = bloco.match(/➪\s*(.+)/);
+
+    if (!origem || !destino) continue;
+
+    const siteOrigem = origem[1].trim().toLowerCase();
+    const siteDestino = destino[1].trim();
+
+    console.log("Comparando com:", siteOrigem);
+
+    if (veioDe.toLowerCase().includes(siteOrigem)) {
+      alert(
+        "MATCH ENCONTRADO!\n\n" +
+        "Veio de: " + siteOrigem + "\n" +
+        "Vai para: " + siteDestino
+      );
+      return;
+    }
+  }
+
+  alert("Nenhum convite encontrado 😢");
+}
+
+verificarConvite();
+</script>
+
+</body>
+</html>
