@@ -1,0 +1,27 @@
+
+body {
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.carta{
+  width: 90px;
+}
+
+.bt {
+  animation: flutuar 3s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+
+#a { order: 1; }
+#b { order: 2; }
+#c { order: 3; }
+
