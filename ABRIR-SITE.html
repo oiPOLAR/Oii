@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="10; URL=http://localhost:8080/">
+    <style>
+    body {
+      display: flex;
+      justify-content: center; 
+      align-items: center;  
+      height: 100vh;  
+      margin: 0;
+    }
+     {
+      background-color: #000000; 
+      margin: 0;
+      min-height: 100vh; 
+    }
+     .flutuando {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-20px); } /* sobe 20px */
+      100% { transform: translateY(0); }
+    }
+  </style>
+  </head>
+  <body>
+    <img class="flutuando" src="https://i.imgur.com/chvIBqs.giff">
+      </body>
+</html>
