@@ -8,41 +8,45 @@
 <body>
 <script>
 async function verificarConvite() {
-  // 🔴 SIMULA de onde veio (apenas para teste)
-  const veioDe = document.referrer;
-  console.log("Veio de:", veioDe);
+  const ref = document.referrer;
 
-  const resposta = await fetch("lista.txt");
-  const texto = await resposta.text();
+  console.log("Veio de:", ref);
+
+  if (!ref) {
+    console.log("Sem referrer");
+    return;
+  }
+
+  const res = await fetch("lista.txt");
+  const texto = await res.text();
 
   const blocos = texto.split("------------------------------------------------⌫");
 
   for (const bloco of blocos) {
-    const origem = bloco.match(/⚿\s*(.+)/);
-    const destino = bloco.match(/➪\s*(.+)/);
+    const origemMatch = bloco.match(/⚿\s*(.+)/);
+    const destinoMatch = bloco.match(/➪\s*(.+)/);
 
-    if (!origem || !destino) continue;
+    if (!origemMatch || !destinoMatch) continue;
 
-    const siteOrigem = origem[1].trim().toLowerCase();
-    const siteDestino = destino[1].trim();
+    const origem = origemMatch[1].trim();
+    const destino = destinoMatch[1].trim();
 
-    console.log("Comparando com:", siteOrigem);
-
-    if (veioDe.toLowerCase().includes(siteOrigem)) {
+    console.log("Comparando com:", origem);
+    
+    if (ref.includes(origem)) {
       alert(
         "MATCH ENCONTRADO!\n\n" +
-        "Veio de: " + siteOrigem + "\n" +
-        "Vai para: " + siteDestino
+        "Veio de: " + origem + "\n" +
+        "Vai para: " + destino
       );
       return;
     }
   }
 
-  window.location.href = "https://" + siteDestino;
+  console.log("Nenhum convite encontrado");
 }
 
 verificarConvite();
-</script>
-
+        </script>
 </body>
 </html>
